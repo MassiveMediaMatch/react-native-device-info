@@ -9,6 +9,7 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'https://maven.google.com' }
         mavenLocal()
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
@@ -48,5 +49,5 @@ dependencies {
     def googlePlayServicesVersion = project.hasProperty('googlePlayServicesVersion') ? project.googlePlayServicesVersion : DEFAULT_GOOGLE_PLAY_SERVICES_VERSION
 
     compile 'com.facebook.react:react-native:+'
-    compile "com.google.android.gms:play-services-gcm:$googlePlayServicesVersion"
+    compile "com.google.firebase:firebase-messaging:17.3.4"
 }

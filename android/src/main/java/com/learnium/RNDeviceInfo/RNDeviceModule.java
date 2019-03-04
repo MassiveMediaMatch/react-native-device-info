@@ -30,6 +30,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -313,11 +314,9 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
 
 
     try {
-      if (Class.forName("com.google.android.gms.iid.InstanceID") != null) {
-        constants.put("instanceId", com.google.android.gms.iid.InstanceID.getInstance(this.reactContext).getId());
-      }
-    } catch (ClassNotFoundException e) {
-      constants.put("instanceId", "N/A: Add com.google.android.gms:play-services-gcm to your project.");
+        constants.put("instanceId", FirebaseInstanceId.getInstance().getId());
+    } catch (Exception e) {
+      constants.put("instanceId", "N/A: Add com.google.android.gms:play-services-fcm to your project.");
     }
     constants.put("serialNumber", Build.SERIAL);
     constants.put("deviceName", deviceName);
